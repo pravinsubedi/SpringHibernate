@@ -16,10 +16,13 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int student_id;
     private String student_name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinColumn(name = "student_id")
-    private List<StudentAddress> studentAddress;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    @JoinColumn(name = "student_id")
+//    private List<StudentAddress> studentAddress;
+    @ManyToOne(cascade =CascadeType.ALL)
+    @JoinColumn(name = "add_id")
+    StudentAddress studentAddress;
 
     public int getStudent_id() {
         return student_id;
@@ -37,24 +40,36 @@ public class Student {
         this.student_name = student_name;
     }
 
-    public List<StudentAddress> getStudentAddress() {
+//    public List<StudentAddress> getStudentAddress() {
+//        return studentAddress;
+//    }
+//
+//    public void setStudentAddress(List<StudentAddress> studentAddress) {
+//        this.studentAddress = studentAddress;
+//    }
+//
+//    public Student(String student_name, List<StudentAddress> studentAddress) {
+//        this.student_name = student_name;
+//        this.studentAddress = studentAddress;
+//    }
+//
+//    public Student(List<StudentAddress> studentAddress) {
+//        this.studentAddress = studentAddress;
+//    }
+
+    public Student() {
+    }
+
+    public Student(String student_name) {
+        this.student_name = student_name;
+    }
+
+    public StudentAddress getStudentAddress() {
         return studentAddress;
     }
 
-    public void setStudentAddress(List<StudentAddress> studentAddress) {
+    public void setStudentAddress(StudentAddress studentAddress) {
         this.studentAddress = studentAddress;
-    }
-
-    public Student(String student_name, List<StudentAddress> studentAddress) {
-        this.student_name = student_name;
-        this.studentAddress = studentAddress;
-    }
-
-    public Student(List<StudentAddress> studentAddress) {
-        this.studentAddress = studentAddress;
-    }
-
-    public Student() {
     }
 }
 
